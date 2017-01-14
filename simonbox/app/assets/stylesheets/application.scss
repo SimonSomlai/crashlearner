@@ -1,0 +1,21 @@
+// This main CSS file contains all style specifications for the website
+// bruiserconversions.com. There's a styling file for every model that's
+// being generated (page.scss, post.scss, ...). Model styles are organized
+// by page-type whilst the css is ordered by location in the DOM. All
+// properties are sorted using CSSComb. Ex;
+
+// post.scss
+// - index-page
+//   {sorted css}
+// - show-page
+//   {sorted css}
+
+// Base styling
+// *= require normalize-rails
+
+// General Styling (headers, footers & nav)
+@import "general/global";
+
+// View styling
+@import "views/static";
+@import "views/docs";
