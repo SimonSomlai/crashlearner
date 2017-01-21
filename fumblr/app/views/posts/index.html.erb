@@ -3,6 +3,7 @@
     <h2 class="title">
       <%= link_to post.title, post_path(post) %>
     </h2>
+    <p class="body"><%= truncate(post.body, length: 100) %></p>
     <p class="date">
       Created <%= time_ago_in_words(post.created_at)  %> ago
     </p>
