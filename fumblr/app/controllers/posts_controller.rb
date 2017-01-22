@@ -24,6 +24,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
+    binding.pry
     if @post.update(post_params)
       redirect_to @post
     else
