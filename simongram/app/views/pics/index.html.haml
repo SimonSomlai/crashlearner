@@ -1,2 +1,4 @@
-%h1 Pics#index
-%p Find me in app/views/pics/index.html.erb
+- @pics.each do |pic|
+  %h2= link_to pic.title, pic
+
+= link_to "SimonGram It!", new_pic_path
