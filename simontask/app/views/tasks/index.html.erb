@@ -1,0 +1,6 @@
+<div class="col-md-8 col-md-offset-2">
+    <% @tasks.each do |task| %>
+    <h1><%= link_to task.title, task %></h1>
+    <p><%= task.description %></p>
+    <% end %>
+</div>
