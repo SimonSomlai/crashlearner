@@ -1,6 +1,22 @@
-<div class="col-md-8 col-md-offset-2">
+<div class="tasks col-md-8 col-md-offset-2">
+    <% if @tasks.blank? %>
+    <h2>You have no tasks</h2>
+    <%= link_to "Create New Task",new_task_path %>
+<% else %>
     <% @tasks.each do |task| %>
-    <h1><%= link_to task.title, task %></h1>
-    <p><%= task.description %></p>
+    <h1 class="<%= task_status(task) %>"><%= link_to task.title, task %></h1>
+    <p><%= raw task.description %></p>
+    <p>
+        <%= link_to(task_change_status_path(task, id: task.id), method: :patch) do %>
+        <%= raw !task.status ?  '<i class="fa fa-check" aria-hidden="true"></i>' : '<i class="fa fa-flag-checkered" aria-hidden="true"></i>' %>
+        <%= "Mark as #{task_status(task, true)}" %>
+        <% end %>
+        |
+        <%= link_to task_path(task), method: :delete, data: { confirm: "Are you sure?"} do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete Task
+        <% end %>
+    </p>
+    <% end %>
     <% end %>
 </div>

@@ -1,17 +1,18 @@
 class TasksController < ApplicationController
-    before_action :find_task, except: [:index, :new, :create]
-    # before_filter :authenticate_user!, except: [:index, :show]
+    include TasksHelper
+    before_action :find_task, except: [:index, :new, :create, :welcome_page]
+    before_filter :authenticate_user!, except: [:welcome_page]
 
     def index
-      @tasks = Task.all.order('created_at DESC')
+      @tasks = current_user.tasks.all.order('status ASC')
     end
 
     def new
-      @task = Task.new
+      @task = current_user.tasks.build
     end
 
     def create
-      @task = Task.new(task_params)
+      @task = current_user.tasks.build(task_params)
       if @task.save
         redirect_to task_path(@task), notice: 'Post succesfull!'
       else
@@ -39,10 +40,19 @@ class TasksController < ApplicationController
       end
     end
 
+    def change_status
+      @task.update_attribute(:status, !@task.status)
+      redirect_to tasks_path
+    end
+
+    def welcome_page
+
+    end
+
     private
 
     def task_params
-      params.require(:task).permit(:title, :description)
+      params.require(:task).permit(:title, :description, :status)
     end
 
     def find_task
