@@ -1,4 +1,4 @@
-# Building 8 Apps in 30 Days
+# Building 4 Apps in 2 Weeks
 ## SimonBox
 > Note-taking app based on dropbox.
 
